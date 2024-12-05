@@ -8,9 +8,9 @@ def split_and_load_data(**kwargs):
     df = pd.read_csv('/opt/airflow/dags/sample_data.csv')  # 원본 데이터 파일 경로
 
     # 특정 컬럼 기준으로 데이터 분리
-    df1 = df[df['column_name'] == 'value1']
-    df2 = df[df['column_name'] == 'value2']
-    df3 = df[df['column_name'] == 'value3']
+    df1 = df[df['point_granularity'] == '1']
+    df2 = df[df['point_granularity'] == '2']
+    df3 = df[df['point_granularity'] == '3']
 
     # Oracle 연결
     oracle_hook = OracleHook(oracle_conn_id='your_oracle_connection')
