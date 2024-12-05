@@ -1,6 +1,6 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from airflow.hooks.base_hook import BaseHook
+from airflow.hooks.base import BaseHook 
 import pandas as pd
 from sqlalchemy import create_engine
 import os
@@ -32,7 +32,7 @@ def load_data_to_postgresql():
 # DAG 정의
 with DAG(
     dag_id='load_data_dag',
-    schedule_interval='@daily',  # 매일 실행
+    schedule='@daily',  # 매일 실행
     start_date=datetime(2023, 1, 1),
     catchup=False,
 ) as dag:
