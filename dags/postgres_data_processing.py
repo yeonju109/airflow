@@ -1,13 +1,12 @@
+import os
+from sqlalchemy import create_engine
+import pandas as pd
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from airflow.hooks.base import BaseHook 
-import pandas as pd
-from sqlalchemy import create_engine
-import os
 from datetime import datetime
 
-# PostgreSQL 연결 정보
-DATABASE_URI = 'postgresql+psycopg2://airflow:airflow@postgres/airflow'
+# PostgreSQL 연결 정보 환경 변수에서 가져오기
+DATABASE_URI = os.getenv('AIRFLOW__DATABASE__SQL_ALCHEMY_CONN')
 
 # 데이터 적재 함수
 def load_data_to_postgresql():
